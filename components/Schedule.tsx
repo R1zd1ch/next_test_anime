@@ -14,7 +14,7 @@ const weekDays = [
   'Воскресенье',
 ];
 
-const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
+const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL_NEW;
 
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState('today'); // хранит выбор пользователя

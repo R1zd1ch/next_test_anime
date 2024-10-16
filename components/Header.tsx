@@ -52,7 +52,7 @@ const Header: React.FC = () => {
               {/* Мобильное меню - отображаем под бургер-иконкой */}
               <Menu.Items
                 className={`absolute top-full right-1 w-38 bg-neutral-950 p-4 rounded-lg shadow-lg
-                  transform transition-all duration-300 ease-in-out
+                  transform transition-all duration-300 ease-in-out z-50
                   ${open ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
               >
                 <div className="flex flex-col gap-4 text-white">

@@ -3,12 +3,35 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https', // Протокол (например, https)
-        hostname: 'anilibria.tv', // Хостнейм внешнего сайта (например, example.com)
-        port: '', // Порт, если он используется (обычно пустой для https)
-        pathname: '/storage/releases/posters/**', // Разрешает доступ к указанному пути
+        protocol: 'https',
+        hostname: 'anilibria.tv',
+        port: '',
+        pathname: '/storage/releases/posters/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'anilibria.top',
+        port: '',
+        pathname: '/storage/releases/posters/**',
       },
     ],
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https', // Протокол (например, https)
+    //     hostname: 'anilibria.tv', // Хостнейм внешнего сайта (например, example.com)
+    //     port: '', // Порт, если он используется (обычно пустой для https)
+    //     pathname: '/storage/releases/posters/**', // Разрешает доступ к указанному пути
+    //   },
+    // ],
+
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https', // Протокол (например, https)
+    //     hostname: 'anilibria.top', // Хостнейм внешнего сайта (например, example.com)
+    //     port: '', // Порт, если он используется (обычно пустой для https)
+    //     pathname: '/storage/releases/posters/**', // Разрешает доступ к указанному пути
+    //   },
+    // ],
     // localPatterns: [
     //   {
     //     pathname: '/assets/images/**',

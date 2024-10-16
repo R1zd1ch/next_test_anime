@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaPlay } from 'react-icons/fa';
 import { getUpdatesReleases } from '@/services/newEpisodes';
-const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
+// const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
+const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL_NEW;
 
 export const NewEpisodes = async () => {
   const episodes = await getUpdatesReleases(6);
@@ -18,10 +19,10 @@ export const NewEpisodes = async () => {
                 {/* Ссылка на динамическую страницу тайтла */}
                 <Link href={`/anime/title/${episode.id}`}>
                   <Image
-                    src={`${IMAGE_URL}${episode.posters.small.url}`}
+                    src={`${IMAGE_URL}${episode.poster.src}`}
                     width={150}
                     height={200}
-                    alt={episode.names.ru}
+                    alt={episode.name.main}
                     className="transition duration-300 ease-in-out transform group-hover:grayscale group-hover:scale-105"
                   />
                 </Link>
@@ -30,7 +31,7 @@ export const NewEpisodes = async () => {
                 <Link href={`/anime/title/${episode.id}`}>
                   <div className="px-2 absolute inset-0 flex items-center justify-center flex-col bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <h3 className="text-white text-center text-base font-semibold">
-                      {episode.names.ru}
+                      {episode.name.main}
                     </h3>
                     <div className="absolute bottom-2 p-2 flex items-center gap-2 border border-slate-500 rounded-lg shadow bg-black bg-opacity-25 transition-colors duration-300 hover:bg-slate-900">
                       <button>Смотреть</button>
