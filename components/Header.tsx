@@ -1,10 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Icon from '../assets/images/5.jpg';
 import NavLink from './NavLink';
 import { Menu } from '@headlessui/react';
+import Search from './Search';
+import SearchResults from './SearchResults';
 
 const navItems = [
   { href: '/anime/catalog', label: 'Каталог' },
@@ -15,16 +17,40 @@ const navItems = [
 ];
 
 const Header: React.FC = () => {
+  const [isFocused, setIsFocused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null); // Реф для контейнера поиска
+
+  // Обработчик кликов вне контейнера с результатами поиска
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsFocused(false); // Закрываем результаты поиска при клике вне области
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative border-gray-700 flex justify-between bg-neutral-950 px-10 py-4 rounded-lg items-center">
+    <div className="relative border-gray-700 flex justify-between bg-neutral-950 px-4 lg:px-10 py-4 rounded-lg items-center w-full">
       {/* Логотип и название */}
       <div className="flex items-center text-white space-x-2">
         <Link href="/" passHref>
           <div className="flex items-center">
             <Image src={Icon} width={50} height={50} alt="Logo" className="rounded-3xl" />
-            <div className="py-2 px-3 text-3xl">AnimeXD</div>
+            <div className="py-2 px-3 text-xl lg:text-3xl">AnimeXD</div>
           </div>
         </Link>
+      </div>
+
+      <div ref={containerRef} className="flex pl-12 pr-3">
+        <Search onFocus={() => setIsFocused(true)} />
+        <div onClick={() => setIsFocused(false)}>
+          <SearchResults isFocused={isFocused} />
+        </div>
       </div>
 
       {/* Бургер-меню для мобильных устройств */}

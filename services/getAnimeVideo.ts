@@ -1,7 +1,7 @@
 import axios from 'axios';
 const ANILIBRIA_API_URL = process.env.NEXT_PUBLIC_ANILIBRIA_API_URL as string;
 
-export const getVideosAnime = async (releaseEpisodeId) => {
+export const getVideosAnime = async (releaseEpisodeId: number) => {
   try {
     const response = await axios.get(
       `${ANILIBRIA_API_URL}/anime/realeses/episodes/${releaseEpisodeId}`,

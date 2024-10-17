@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 const VideoTitlePage = dynamic(() => import('@/components/VideoTitlePage'), { ssr: false });
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: any }) {
   const { id } = params;
   const anime = await getTitleById(id);
 
@@ -14,14 +14,14 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const seasons = {
+const seasons: any = {
   autumn: 'Осень',
   spring: 'Весна',
   summer: 'Лето',
   winter: 'Зима',
 };
 
-const AnimePage = async ({ params }) => {
+const AnimePage = async ({ params }: { params: any }) => {
   const { id } = params;
   const anime = await getTitleById(id);
 
@@ -45,7 +45,7 @@ const AnimePage = async ({ params }) => {
         />
         <div className="md:ml-8">
           <p className="text-lg mb-2">
-            Жанры: {anime.genres.map((genre) => genre.name).join(', ')}
+            Жанры: {anime.genres.map((genre: any) => genre.name).join(', ')}
           </p>
           <p className="text-lg mb-2">
             Год выпуска: {createdYear} ({seasons[anime.season.value]})

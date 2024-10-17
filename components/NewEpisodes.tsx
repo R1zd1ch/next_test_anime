@@ -13,7 +13,7 @@ export const NewEpisodes = async () => {
       <div>
         <h1 className="text-3xl text-left mb-6">Недавно обновлённые</h1>
         <div className="border-2 rounded flex items-center flex-wrap justify-center p-auto">
-          {episodes.map((episode) => (
+          {episodes.map((episode: any) => (
             <div className="p-2 m-1/3" key={episode.id}>
               <div className="relative group">
                 {/* Ссылка на динамическую страницу тайтла */}

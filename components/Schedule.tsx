@@ -16,10 +16,28 @@ const weekDays = [
 
 const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL_NEW;
 
+interface Anime {
+  id: string;
+  names: {
+    ru?: string;
+    en?: string;
+  };
+  posters: {
+    small: {
+      url: string;
+    };
+  };
+}
+
+interface ScheduleDay {
+  day: number;
+  list: Anime[];
+}
+
 const Schedule = () => {
-  const [selectedDay, setSelectedDay] = useState('today'); // хранит выбор пользователя
-  const [fullSchedule, setFullSchedule] = useState([]); // хранит полное расписание для всех дней
-  const [loading, setLoading] = useState(true); // флаг загрузки
+  const [selectedDay, setSelectedDay] = useState<string>('today'); // хранит выбор пользователя
+  const [fullSchedule, setFullSchedule] = useState<ScheduleDay[]>([]); // хранит полное расписание для всех дней
+  const [loading, setLoading] = useState<boolean>(true); // флаг загрузки
 
   useEffect(() => {
     const fetchSchedule = async () => {
@@ -45,7 +63,7 @@ const Schedule = () => {
 
   return (
     <div className="container mx-auto p-4 mt-4">
-      <h1 className="text-3xl mb-4">Расписание ></h1>
+      <h1 className="text-3xl mb-4">Расписание &gt;</h1>
 
       {/* Dropdown для выбора дня */}
       <div className="mb-4">
@@ -70,7 +88,7 @@ const Schedule = () => {
         <>
           {/* Отображаем выбранный день только один раз сверху */}
           <h2 className="text-xl font-semibold mb-6 text-white">
-            {weekDays[filteredSchedule?.day]}
+            {weekDays[filteredSchedule?.day ?? 0]}
           </h2>
 
           {/* Карточки с аниме */}
@@ -82,7 +100,7 @@ const Schedule = () => {
                     <Link href={`/anime/title/${anime.id}`}>
                       <Image
                         src={`${IMAGE_URL}${anime.posters.small.url}`}
-                        alt={anime.names.ru || anime.names.en}
+                        alt={anime.id}
                         width={150}
                         height={200}
                         className="rounded-lg transition duration-300 ease-in-out transform group-hover:grayscale group-hover:scale-105"

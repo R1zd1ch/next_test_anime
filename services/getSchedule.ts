@@ -7,13 +7,13 @@ export const getTodayDay = () => {
   return (day + 6) % 7;
 };
 
-export const getNextAndPrevDay = (day) => {
+export const getNextAndPrevDay = (day: number) => {
   const lastDay = day > 0 ? day - 1 : 6;
   const nextDay = day > 5 ? 0 : day + 1;
   return [lastDay, day, nextDay];
 };
 
-export const getSchedule = async (days) => {
+export const getSchedule = async (days: number[]) => {
   try {
     const response = await axios.get(
       `${ANILIBRIA_API_URL}/title/schedule?days=${days.join(',')}&filter=posters,type,status,names,genres,id`,
