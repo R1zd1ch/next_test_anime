@@ -23,7 +23,7 @@ export const getGenres = async () => {
   }
 };
 
-export const getProductionStatus = async () => {
+export const getProductionStatuses = async () => {
   try {
     const response = await axios.get(
       `${ANILIBRIA_API_URL}/anime/catalog/references/production-statuses`,
@@ -31,20 +31,64 @@ export const getProductionStatus = async () => {
 
     return response.data;
   } catch (err: any) {
-    console.error('Список статусов не получен:', err.message || err);
-    throw new Error('Ошибка при получении статусов');
+    console.error('Список продакшн статусов не получен:', err.message || err);
+    throw new Error('Ошибка при получении продакшн статусов');
   }
 };
 
-export const getProductionStatus = async () => {
+export const getPublishStatuses = async () => {
   try {
     const response = await axios.get(
-      `${ANILIBRIA_API_URL}/anime/catalog/references/production-statuses`,
+      `${ANILIBRIA_API_URL}/anime/catalog/references/publish-statuses`,
     );
 
     return response.data;
   } catch (err: any) {
-    console.error('Список статусов не получен:', err.message || err);
-    throw new Error('Ошибка при получении статусов');
+    console.error('Список паблиш статусов не получен:', err.message || err);
+    throw new Error('Ошибка при получении паблиш статусов');
+  }
+};
+
+export const getSeasons = async () => {
+  try {
+    const response = await axios.get(`${ANILIBRIA_API_URL}/anime/catalog/references/seasons`);
+
+    return response.data;
+  } catch (err: any) {
+    console.error('Список сезонов не получен:', err.message || err);
+    throw new Error('Ошибка при получении сезонов');
+  }
+};
+
+export const getSorting = async () => {
+  try {
+    const response = await axios.get(`${ANILIBRIA_API_URL}/anime/catalog/references/sorting`);
+
+    return response.data;
+  } catch (err: any) {
+    console.error('Список сортировок не получен:', err.message || err);
+    throw new Error('Ошибка при получении сортировок');
+  }
+};
+
+export const getTypes = async () => {
+  try {
+    const response = await axios.get(`${ANILIBRIA_API_URL}/anime/catalog/references/types`);
+
+    return response.data;
+  } catch (err: any) {
+    console.error('Список типов не получен:', err.message || err);
+    throw new Error('Ошибка при получении типов');
+  }
+};
+
+export const getYears = async () => {
+  try {
+    const response = await axios.get(`${ANILIBRIA_API_URL}/anime/catalog/references/years`);
+
+    return response.data;
+  } catch (err: any) {
+    console.error('Список годов не получен:', err.message || err);
+    throw new Error('Ошибка при получении годов');
   }
 };
