@@ -1,4 +1,4 @@
-import { NewEpisodes } from '@/components/NewEpisodes';
+import NewEpisodes from '@/components/NewEpisodes';
 
 export const runtime = 'edge';
 // import AdSlider from '@/components/ADSlider';
