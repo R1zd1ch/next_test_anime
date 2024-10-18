@@ -3,7 +3,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 const VideoTitlePage = dynamic(() => import('@/components/VideoTitlePage'), { ssr: false });
-
+export const runtime = 'edge';
 export async function generateMetadata({ params }: { params: any }) {
   const { id } = params;
   const anime = await getTitleById(id);
