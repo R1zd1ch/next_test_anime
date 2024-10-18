@@ -73,7 +73,7 @@ const SearchResults = ({ isFocused }: { isFocused: boolean }) => {
                     <div className="flex-shrink-0">
                       <Image
                         className="rounded-lg shadow-lg"
-                        src={`${IMAGE_URL}${anime.poster.src}`}
+                        src={`${IMAGE_URL}${anime.poster.optimized.src}`}
                         alt={anime.name.main}
                         width={125}
                         height={125}

@@ -38,7 +38,7 @@ const AnimePage = async ({ params }: { params: any }) => {
       <h1 className="text-4xl text-center my-6">{anime.name.main}</h1>
       <div className="flex flex-col items-center md:flex-row md:items-start md:justify-between">
         <Image
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL_NEW}${anime.poster.src}`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL_NEW}${anime.poster.optimized.src}`}
           width={300}
           height={450}
           alt={anime.name.main}

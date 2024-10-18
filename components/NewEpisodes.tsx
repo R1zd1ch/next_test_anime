@@ -19,7 +19,7 @@ export const NewEpisodes = async () => {
                 {/* Ссылка на динамическую страницу тайтла */}
                 <Link href={`/anime/title/${episode.id}`}>
                   <Image
-                    src={`${IMAGE_URL}${episode.poster.src}`}
+                    src={`${IMAGE_URL}${episode.poster.optimized.src}`}
                     width={150}
                     height={200}
                     alt={episode.name.main}
