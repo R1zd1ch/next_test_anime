@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const ANILIBRIA_API_URL = process.env.NEXT_PUBLIC_ANILIBRIA_API_URL as string;
 
 if (!ANILIBRIA_API_URL) {
