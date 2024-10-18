@@ -146,6 +146,20 @@ const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episo
     }
   };
 
+  useEffect(() => {
+    let hideControlsTimeout: NodeJS.Timeout;
+    if (playing && isFullscreen) {
+      setFade(false);
+      hideControlsTimeout = setTimeout(() => {
+        setFade(true);
+      }, 3000);
+    } else {
+      setFade(true);
+    }
+
+    return () => clearTimeout(hideControlsTimeout);
+  }, [playing, isFullscreen]);
+
   const skipForward = () => {
     const currentTime = playerRef.current?.getCurrentTime() ?? 0;
     playerRef.current?.seekTo(currentTime + 5);
