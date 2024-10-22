@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import Icon from '../assets/images/5.jpg';
 import NavLink from './NavLink';
 import Search from './Search';
@@ -40,13 +40,22 @@ const Header: React.FC = () => {
         <div className="navbar-start">
           <Link href="/" passHref>
             <div className="flex items-center cursor-pointer">
-              <Image src={Icon} width={50} height={50} alt="Logo" className="rounded-full" />
+              <Image
+                src={Icon}
+                width={50}
+                height={50}
+                layout="fixed"
+                alt="Logo"
+                priority={true}
+                className="rounded-full"
+                sizes="(max-width: 768px) 40px, (max-width: 1200px) 50px, 50px"
+              />
               <span className="ml-2 text-xl lg:text-3xl">AnimeXD</span>
             </div>
           </Link>
         </div>
 
-        <div ref={containerRef} className="flex pl-12 pr-3">
+        <div ref={containerRef} className="flex pl-1 pr-3 md:pl-12 lg:pl-32">
           <Search onFocus={() => setIsFocused(true)} />
           <div onClick={() => setIsFocused(false)}>
             <SearchResults isFocused={isFocused} />
