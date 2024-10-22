@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Icon from '../assets/images/5.jpg';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 

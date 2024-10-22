@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Icon from '../assets/images/5.jpg';
 import NavLink from './NavLink';
 import Search from './Search';

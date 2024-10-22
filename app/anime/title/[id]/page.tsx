@@ -1,5 +1,5 @@
 import { getTitleById } from '@/services/getTitleById';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import dynamic from 'next/dynamic';
 
 const VideoTitlePage = dynamic(() => import('@/components/VideoTitlePage'), { ssr: false });

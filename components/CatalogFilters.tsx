@@ -60,7 +60,7 @@ export const AgeRatings = () => {
     if (searchParams.ageRatings.length === 0) {
       setSelectedRatings([]);
     } else {
-      setAgeRatings(searchParams.ageRatings);
+      setSelectedRatings(searchParams.ageRatings);
     }
   }, [searchParams]);
 
@@ -128,6 +128,7 @@ export const Genres = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [filterText, setFilterText] = useState<string>('');
   const { tempSearchParams, setTempSearchParams, searchParams } = useAnimeStore();
+  const [dataGenres, setDataGenres] = useState<Genre[]>([]);
 
   const fetchGenres = async () => {
     setLoading(true);
@@ -136,6 +137,7 @@ export const Genres = () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       const data = await getGenres();
       setGenres(data);
+      setDataGenres(data);
     } catch (err) {
       setError(`Ошибка при загрузке жанров, ${err}`);
     } finally {
@@ -163,7 +165,7 @@ export const Genres = () => {
     if (searchParams.genres.length === 0) {
       setSelectedGenres([]);
     } else {
-      setGenres(searchParams.genres);
+      setGenres(dataGenres);
     }
   }, [searchParams]);
 
@@ -172,7 +174,7 @@ export const Genres = () => {
   }, []);
 
   const filteredGenres = genres.filter((genre) =>
-    genre.name.toLowerCase().includes(filterText.toLowerCase()),
+    genre?.name?.toLowerCase().includes(filterText.toLowerCase()),
   );
 
   return (
@@ -283,7 +285,7 @@ export const DubbingStatuses = () => {
     if (searchParams.productionStatuses.length === 0) {
       setSelectedStatuses([]);
     } else {
-      setDubbingStatuses(searchParams.productionStatuses);
+      setSelectedStatuses(searchParams.productionStatuses);
     }
   }, [searchParams]);
 
@@ -374,7 +376,7 @@ export const OngoingStatuses: React.FC = () => {
     if (searchParams.publishStatuses.length === 0) {
       setSelectedStatuses([]);
     } else {
-      setOngoingStatuses(searchParams.publishStatuses);
+      setSelectedStatuses(searchParams.publishStatuses);
     }
   }, [searchParams]);
 
@@ -461,7 +463,7 @@ export const Seasons = () => {
     if (searchParams.seasons.length === 0) {
       setSelectedSeasons([]);
     } else {
-      setSeasons(searchParams.seasons);
+      setSelectedSeasons(searchParams.seasons);
     }
   }, [searchParams]);
 
@@ -519,14 +521,16 @@ export const Sorting = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { setTempSearchParams, searchParams } = useAnimeStore();
+  const [dataSort, setDataSort] = useState<SortingOption[]>([]);
 
   const fetchSortingOptions = async () => {
     setLoading(true);
     setError(null);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       const data: SortingOption[] = await getSorting();
       setSortingOptions(data);
+      setDataSort(data);
     } catch (err) {
       setError(`'Ошибка при загрузке вариантов сортировки', ${err}`);
     } finally {
@@ -542,7 +546,7 @@ export const Sorting = () => {
     if (searchParams.sorting.length === 0) {
       setSelectedOption(null);
     } else {
-      setSortingOptions(searchParams.sorting);
+      setSortingOptions(dataSort);
     }
   }, [searchParams]);
 
@@ -659,7 +663,7 @@ export const AnimeTypes = () => {
     if (searchParams.types.length === 0) {
       setSelectedAnimeTypes([]);
     } else {
-      setAnimeTypes(searchParams.types);
+      setSelectedAnimeTypes(searchParams.types);
     }
   }, [searchParams]);
 

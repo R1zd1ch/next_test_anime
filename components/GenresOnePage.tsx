@@ -1,5 +1,5 @@
 import { GenreProps } from '@/app/anime/genres/releasesGenre/[id]/page';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import GenreList from './GenresOnePageList';
 const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL_NEW;
 const GenrePage = async ({ genreInfo }: { genreInfo: GenreProps }) => {
@@ -11,8 +11,8 @@ const GenrePage = async ({ genreInfo }: { genreInfo: GenreProps }) => {
             src={`${IMAGE_URL}${genreInfo.image.optimized.preview}`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt={`${genreInfo.name} preview`}
-            fill
-            style={{ objectFit: 'cover' }}
+            layout="fill"
+            objectFit="cover"
             placeholder="blur"
             blurDataURL={`${IMAGE_URL}${genreInfo.image.thumbnail}`}
             className="w-full h-full rounded-xl"

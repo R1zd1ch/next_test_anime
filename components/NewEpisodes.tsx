@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import { FaPlay } from 'react-icons/fa';
 import { getUpdatesReleases } from '@/services/newEpisodes';
