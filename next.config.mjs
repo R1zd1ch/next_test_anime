@@ -14,6 +14,12 @@ const nextConfig = {
         port: '',
         pathname: '/storage/releases/posters/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'anilibria.top',
+        port: '',
+        pathname: '/storage/anime/genres/images/**',
+      },
     ],
     // remotePatterns: [
     //   {

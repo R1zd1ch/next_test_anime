@@ -92,3 +92,29 @@ export const getYears = async () => {
     throw new Error('Ошибка при получении годов');
   }
 };
+
+export const fetchAnimeReleases = async (searchParams: any) => {
+  const queryParams = new URLSearchParams({
+    page: searchParams.page?.toString() || '1', // Страница в выдаче
+    limit: searchParams.limit?.toString() || '15', // Количество релизов в выдаче
+    'f[genres]': searchParams.genres?.join(','), // Список жанров через запятую
+    'f[types]': searchParams.types?.join(','), // Список типов релизов
+    'f[seasons]': searchParams.seasons?.join(','), // Список сезонов
+    'f[years][from_year]': searchParams.fromYear?.toString(), // Минимальный год выхода
+    'f[years][to_year]': searchParams.toYear?.toString(), // Максимальный год выхода
+    'f[search]': searchParams.search || '', // Поисковый запрос
+    'f[sorting]': searchParams.sorting || 'FRESH_AT_ASK', // Сортировка
+    'f[age_ratings]': searchParams.ageRatings?.join(','), // Список возрастных рейтингов
+    'f[publish_statuses]': searchParams.publishStatuses?.join(','), // Статус публикации
+    'f[production_statuses]': searchParams.productionStatuses?.join(','), // Статус производства
+  });
+  try {
+    const url = `${ANILIBRIA_API_URL}/anime/catalog/releases?${queryParams.toString()}`;
+    console.log(searchParams);
+    const response = await axios.get(url);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching anime releases:', error);
+    return [];
+  }
+};
