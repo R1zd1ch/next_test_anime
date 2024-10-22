@@ -37,5 +37,5 @@ const AnimePage = async ({ params }: { params: any }) => {
     </div>
   );
 };
-
+export const runtime = 'edge';
 export default AnimePage;
