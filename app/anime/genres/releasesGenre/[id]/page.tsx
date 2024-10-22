@@ -29,5 +29,4 @@ const Home = async ({ params }: { params: { id: number } }) => {
   );
 };
 
-export const runtime = 'edge';
 export default Home;
