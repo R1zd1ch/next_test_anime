@@ -11,6 +11,7 @@ interface AnimeInfoCardProps {
     poster: {
       optimized: {
         src: string;
+        thumbnail: string;
       };
     };
     genres: { id: number; name: string }[];
@@ -76,6 +77,8 @@ const AnimeInfoCard: React.FC<AnimeInfoCardProps> = ({ anime, seasons }) => {
           height={450}
           alt={anime.name.main}
           className="rounded-lg shadow-md"
+          placeholder="blur"
+          blurDataURL={`${process.env.NEXT_PUBLIC_IMAGE_URL_NEW}${anime.poster.optimized.thumbnail}`}
         />
       </div>
 

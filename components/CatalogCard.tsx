@@ -45,11 +45,9 @@ const AnimeCard: React.FC<AnimeCardProps> = ({
           <Image
             src={`${IMAGE_URL}${poster.src}`}
             alt={name.main}
-            width={180}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             layout="fill"
             objectFit="cover"
-            height={260}
             placeholder="blur"
             blurDataURL={`${IMAGE_URL}${poster.thumbnail}`}
             className="rounded-lg object-cover w-full h-full"
