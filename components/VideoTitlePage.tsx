@@ -207,14 +207,24 @@ const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episo
     if (hideControlsTimeoutRef.current) {
       clearTimeout(hideControlsTimeoutRef.current);
     }
-    hideControlsTimeoutRef.current = setTimeout(() => {
-      setFade(false);
-    }, 3000);
+    if (playing) {
+      hideControlsTimeoutRef.current = setTimeout(() => {
+        setFade(false);
+      }, 3000);
+    }
   };
 
   useEffect(() => {
+    if (!playing) {
+      setFade(true);
+    }
+  }, [playing]);
+
+  useEffect(() => {
     const handleMouseLeave = () => {
-      if (isFullscreen) setFade(false);
+      if (playing) {
+        setFade(false);
+      }
     };
 
     if (playerContainerRef.current) {
@@ -227,7 +237,7 @@ const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episo
         container.removeEventListener('mouseleave', handleMouseLeave);
       };
     }
-  }, []);
+  }, [playing]);
 
   useEffect(() => {
     if (isFullscreen && playing) {
@@ -380,7 +390,7 @@ const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episo
               bgcolor="rgba(0, 0, 0, 0.5)"
               sx={{
                 opacity: fade ? 0.9 : 0,
-                transition: 'opacity 0.3s ease',
+                transition: 'opacity 0.6s ease',
                 flexDirection: {
                   xs: 'row',
                   sm: 'row',
