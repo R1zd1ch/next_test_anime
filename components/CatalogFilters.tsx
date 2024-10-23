@@ -543,7 +543,7 @@ export const Sorting = () => {
   }, [selectedOption]);
 
   useEffect(() => {
-    if (searchParams.sorting.length === 0) {
+    if (typeof searchParams.sorting === 'string' && searchParams.sorting.length === 0) {
       setSelectedOption(null);
     } else {
       setSortingOptions(dataSort);
