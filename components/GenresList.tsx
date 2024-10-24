@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import GenreCard from './GenresCard'; // Импортируем компонент карточки
+import GenreCard from './GenresCard';
 import { getGenres } from '@/services/getGenres';
 
 const GenreList: React.FC = () => {

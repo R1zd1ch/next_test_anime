@@ -1,6 +1,7 @@
 'use client';
+/* eslint-disable */
 import Link from 'next/link';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import React, { useState, useEffect } from 'react';
 import { useSearchStore } from '@/store/useSearchStore';
 import { searchAnime } from '@/services/searchAnime';
@@ -58,28 +59,32 @@ const SearchResults = ({ isFocused }: { isFocused: boolean }) => {
   return (
     <>
       {isFocused && (
-        <div className="z-10 absolute mt-2 w-5/6 lg:w-1/2 bg-neutral-900 text-white rounded-lg shadow-lg top-16 left-1/2 transform -translate-x-1/2 lg:left-1/3 lg:transform lg:-translate-x-1/3 transition-all duration-300 ease-in-out">
+        <div className="z-10 absolute mt-2 w-5/6 lg:w-1/2 bg-neutral-900 text-white rounded-lg shadow-lg top-16 left-1/2 transform -translate-x-1/2 lg:left-1/3 lg:transform lg:-translate-x-1/3 transition-all duration-300 ease-in-out max-h-[75%] overflow-y-auto">
           {loading ? (
             renderSkeletons()
           ) : (
             <>
               <ul>
-                {visibleResults.map((anime: any) => (
+                {results.map((anime: any) => (
                   <Link
                     href={`/anime/title/${anime.id}`}
                     key={anime.id}
-                    className="p-4 hover:bg-neutral-800 hover:shadow-md transition-all duration-300 ease-in-out cursor-pointer flex flex-row items-center rounded-lg"
+                    className="p-4 hover:bg-neutral-800 hover:shadow-md transition-all duration-300 ease-in-out cursor-pointer flex flex-row items-center rounded-lg "
                   >
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 relative w-24 h-36">
+                      {' '}
+                      {/* Указываем ширину и высоту */}
                       <Image
-                        className="rounded-lg shadow-lg"
+                        className="rounded-lg shadow-lg object-cover"
                         src={`${IMAGE_URL}${anime.poster.optimized.src}`}
                         alt={anime.name.main}
-                        width={125}
-                        height={125}
-                        priority
+                        layout="fill"
+                        objectFit="cover"
+                        placeholder="blur"
+                        blurDataURL={`${IMAGE_URL}${anime.poster.optimized.src}`}
                       />
                     </div>
+
                     <div className="ml-4">
                       <h3 className="text-lg font-semibold">{anime.name.main}</h3>
                       <p className="text-sm text-gray-400">
@@ -92,7 +97,7 @@ const SearchResults = ({ isFocused }: { isFocused: boolean }) => {
               </ul>
 
               {/* Кнопка "Ещё" */}
-              {results.length > INITIAL_LIMIT && !showMore && (
+              {/* {results.length > INITIAL_LIMIT && !showMore && (
                 <div className="flex justify-end p-4">
                   <button
                     onClick={() => setShowMore(true)}
@@ -101,7 +106,7 @@ const SearchResults = ({ isFocused }: { isFocused: boolean }) => {
                     Ещё
                   </button>
                 </div>
-              )}
+              )} */}
             </>
           )}
         </div>

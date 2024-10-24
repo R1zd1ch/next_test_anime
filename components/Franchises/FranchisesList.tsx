@@ -4,9 +4,8 @@ import FranchiseCard from './FranchisesCard';
 import { useInView } from 'react-intersection-observer';
 import Skeleton from 'react-loading-skeleton';
 
-const CHUNK_SIZE = 20; // Количество франшиз для подгрузки за раз
+const CHUNK_SIZE = 20;
 
-// Компонент для отображения скелетона карточек франшиз
 const SkeletonCard: React.FC = () => {
   return (
     <div className="flex bg-neutral-800 shadow-md rounded-2xl overflow-hidden transition-shadow duration-300 relative w-full max-w-4xl h-[200px]">
