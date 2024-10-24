@@ -1,27 +1,34 @@
-import { withNextVideo } from "next-video/process";
+import { withNextVideo } from 'next-video/process';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'anilibria.tv',
-        port: '',
-        pathname: '/storage/releases/posters/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'anilibria.top',
-        port: '',
-        pathname: '/storage/releases/posters/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'anilibria.top',
-        port: '',
-        pathname: '/storage/anime/genres/images/**',
-      },
-    ],
+    domains: ['anilibria.top', 'picsum.photos'],
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'anilibria.tv',
+    //     port: '',
+    //     pathname: '/storage/releases/posters/**',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'anilibria.top',
+    //     port: '',
+    //     pathname: '/storage/releases/posters/**',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'anilibria.top',
+    //     port: '',
+    //     pathname: '/storage/anime/genres/images/**',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'anilibria.top',
+    //     port: '',
+    //     pathname: '/storage/anime/franchises/images/*',
+    //   },
+    // ],
     // remotePatterns: [
     //   {
     //     protocol: 'https', // Протокол (например, https)
