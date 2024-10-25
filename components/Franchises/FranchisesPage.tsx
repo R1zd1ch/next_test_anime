@@ -1,6 +1,6 @@
 import { FranchiseElement } from '@/app/anime/franchises/[id]/page';
 import FranchisesPageList from '@/components/Franchises/FranchisesPageList';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL_NEW;
 
 interface FranchiseElementProps {
