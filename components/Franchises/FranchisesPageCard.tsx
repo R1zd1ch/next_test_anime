@@ -34,7 +34,7 @@ const FranchisesPageCard: React.FC<FranchiseElementReleaseProps> = ({ release, i
             {release.release.type.description} • {release.release.episodes_total} эпизодов
           </p>
         </div>
-        <div className="absolute right-10 bottom-3 text-neutral-600 text-3xl font-bold -translate-y-[100%]">
+        <div className="hidden sm:block absolute right-10 bottom-3 text-neutral-600 text-3xl font-bold -translate-y-[100%]">
           #{index + 1}
         </div>
       </div>
