@@ -20,6 +20,10 @@ interface MultiEpisodeVideoPlayerProps {
   episodes: Episode[];
 }
 
+const Spinner = () => (
+  <div className="w-12 h-12 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+);
+
 const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episodes }) => {
   const [selectedEpisodeIndex, setSelectedEpisodeIndex] = useState(0);
   const [selectedQuality, setSelectedQuality] = useState<string>('hls_480');
@@ -37,6 +41,7 @@ const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episo
   const [isEpisodeMenuOpen, setIsEpisodeMenuOpen] = useState(false);
   const [isQualityMenuOpen, setIsQualityMenuOpen] = useState(false);
   const hideControlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [loadingVideo, setLoadingVideo] = useState<boolean>(true);
 
   const qualities = [
     { label: '480p', value: 'hls_480' },
@@ -141,21 +146,24 @@ const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episo
     if (screenfull.isEnabled && playerRef.current) {
       const videoElement = playerRef.current.getInternalPlayer();
 
+      // Проверка на мобильные устройства
       if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         if (videoElement) {
+          // Используем метод requestFullscreen для мобильных устройств
           if (videoElement.requestFullscreen) {
             videoElement.requestFullscreen();
           } else if (videoElement.webkitEnterFullscreen) {
-            videoElement.webkitEnterFullscreen();
+            videoElement.webkitEnterFullscreen(); // iOS
           } else if (videoElement.msRequestFullscreen) {
             videoElement.msRequestFullscreen();
           }
         }
       } else {
+        // Для десктопных устройств
         if (screenfull.isFullscreen) {
           screenfull.exit();
         } else {
-          screenfull.request(playerContainerRef.current);
+          screenfull.request(playerContainerRef.current); // Передаем контейнер видео
         }
       }
     }
@@ -331,17 +339,25 @@ const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episo
             </div>
           </div>
           <Box ref={playerContainerRef} position="relative">
-            <Box>
+            <Box className="relative w-full pt-[56.25%] sm:pt-[75%] md:pt-[56.25%] lg:pt-[56.25%]">
+              {loadingVideo && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                  <Spinner />
+                </div>
+              )}
               <ReactPlayer
                 ref={playerRef}
                 url={selectedEpisode[selectedQuality]}
-                className="react-player"
                 playing={playing}
                 volume={volume}
                 width="100%"
                 height="100%"
+                className="absolute top-0 left-0 w-full h-full"
                 onProgress={handleProgress}
                 onDuration={handleDuration}
+                onBuffer={() => setLoadingVideo(true)}
+                onBufferEnd={() => setLoadingVideo(false)}
+                onReady={() => setLoadingVideo(false)}
                 playbackRate={currentSpeed}
                 controls={false}
                 style={{ backgroundColor: 'black' }}
