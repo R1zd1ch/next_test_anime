@@ -1,4 +1,4 @@
-import GenrePage from '@/components/GenresOnePage';
+import GenrePage from '@/components/Genres/GenresOnePage';
 import { getGenresById } from '@/services/getGenres';
 
 export interface GenreProps {

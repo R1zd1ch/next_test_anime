@@ -1,8 +1,8 @@
-import NewEpisodes from '@/components/NewEpisodes';
+import NewEpisodes from '@/components/MainPage/NewEpisodes';
 
 export const runtime = 'edge';
 // import AdSlider from '@/components/ADSlider';
-import Schedule from '@/components/Schedule';
+import Schedule from '@/components/MainPage/Schedule';
 const Home = () => {
   return (
     <>

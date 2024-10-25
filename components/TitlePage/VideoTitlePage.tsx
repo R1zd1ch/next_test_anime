@@ -143,27 +143,29 @@ const MultiEpisodeVideoPlayer: React.FC<MultiEpisodeVideoPlayerProps> = ({ episo
   };
 
   const toggleFullScreen = () => {
-    if (screenfull.isEnabled && playerRef.current) {
+    if (playerRef.current) {
       const videoElement = playerRef.current.getInternalPlayer();
 
       // Проверка на мобильные устройства
       if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         if (videoElement) {
-          // Используем метод requestFullscreen для мобильных устройств
           if (videoElement.requestFullscreen) {
             videoElement.requestFullscreen();
           } else if (videoElement.webkitEnterFullscreen) {
-            videoElement.webkitEnterFullscreen(); // iOS
+            videoElement.webkitEnterFullscreen();
           } else if (videoElement.msRequestFullscreen) {
             videoElement.msRequestFullscreen();
+          } else {
+            console.log('Полноэкранный режим не поддерживается этим устройством.');
           }
         }
       } else {
-        // Для десктопных устройств
-        if (screenfull.isFullscreen) {
-          screenfull.exit();
-        } else {
-          screenfull.request(playerContainerRef.current); // Передаем контейнер видео
+        if (screenfull.isEnabled) {
+          if (screenfull.isFullscreen) {
+            screenfull.exit();
+          } else {
+            screenfull.request(playerContainerRef.current);
+          }
         }
       }
     }

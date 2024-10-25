@@ -1,4 +1,4 @@
-import AnimeCatalog from '@/components/Catalog';
+import AnimeCatalog from '@/components/Catalog/Catalog';
 const Home = () => {
   return (
     <div>

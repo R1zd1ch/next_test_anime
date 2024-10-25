@@ -1,6 +1,6 @@
 import { getTitleById } from '@/services/getTitleById';
-import AnimeInfoCard from '@/components/AnimeIdPage';
-import VideoWrapper from '@/components/AnimeIdPageWrapper';
+import AnimeInfoCard from '@/components/TitlePage/AnimeIdPage';
+import VideoWrapper from '@/components/TitlePage/AnimeIdPageWrapper';
 
 export async function generateMetadata({ params }: { params: any }) {
   const { id } = params;

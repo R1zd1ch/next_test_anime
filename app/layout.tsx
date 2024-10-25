@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import './globals.css';
 import Head from 'next/head';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@/components/BaseLayout/Header';
+import Footer from '@/components/BaseLayout/Footer';
 
 export const metadata: Metadata = {
   title: 'Anime-test-app',

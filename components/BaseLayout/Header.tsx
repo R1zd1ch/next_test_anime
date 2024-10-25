@@ -2,10 +2,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/legacy/image';
-import Icon from '../assets/images/5.jpg';
+import Icon from '@/assets/images/5.jpg';
 import NavLink from './NavLink';
-import Search from './Search';
-import SearchResults from './SearchResults';
+import Search from '../MainPage/Search';
+import SearchResults from '../MainPage/SearchResults';
 
 const navItems = [
   { href: '/anime/catalog', label: 'Каталог' },

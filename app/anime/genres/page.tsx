@@ -1,4 +1,4 @@
-import Genres from '@/components/Genres';
+import Genres from '@/components/Genres/Genres';
 
 const Home = () => {
   return <Genres></Genres>;
